@@ -13,6 +13,7 @@ import discussionRouter from "./routes/discussion.routes.js";
 import messageRouter from "./routes/messages.routes.js";
 import validateToken from "./guards/validateToken.js";
 import { app, server } from "./socket/socket.js";
+import { JWT_KEY, MONGO_DB_URL, PORT } from "./jwt/Api.js";
 
 // Config
 dotenv.config();
@@ -44,6 +45,7 @@ app.use("/messages", validateToken, messageRouter);
 
 const port = process.env.PORT || 4000;
 server.listen(port, () => {
+  console.log(JWT_KEY, MONGO_DB_URL, PORT)
   console.log(`Server is listening on port ${port}`);
   connectDB();
 });

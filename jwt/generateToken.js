@@ -1,7 +1,9 @@
 import jwt from "jsonwebtoken";
+import { JWT_KEY } from "./Api.js";
 
 export default function generateToken(userID) {
-  const token = jwt.sign({ userID }, process.env.JWT_KEY, {
+  console.log(JWT_KEY)
+  const token = jwt.sign({ userID }, JWT_KEY, {
     expiresIn: "5d",
   });
 

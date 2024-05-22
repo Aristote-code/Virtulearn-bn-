@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
 import User from "../models/user.model.js";
+import { JWT_KEY } from "../jwt/Api.js";
 
 export default async function validateToken(req, res, next) {
   try {
@@ -19,7 +20,7 @@ export default async function validateToken(req, res, next) {
         .json({ error: "Unauthorised - No token provided" });
     }
 
-    const decoded = jwt.verify(token, process.env.JWT_KEY);
+    const decoded = jwt.verify(token, JWT_KEY);
 
     if (!decoded) {
       return res.status(401).json({ error: "Unauthorised - Invalid Token" });
